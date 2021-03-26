@@ -10,5 +10,5 @@ export const PrivateRouter = ({isAuth,Component,...rest}:i_types_routes) => <Rou
 
 export const PublicRouter = ({isAuth,Component,...rest}:i_types_routes) => <Route
     {...rest}
-    component={ () => isAuth ? <Redirect to='/dashboard'/> : Component() }
+    component={ () => isAuth ? <Redirect to='/'/> : Component() }
 />

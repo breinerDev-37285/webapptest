@@ -4,6 +4,7 @@ import { fetchWithoutToken } from '../helpers/fetch';
 import { decode } from 'jsonwebtoken';
 import types from '../types';
 import { delErrorMsg, setError } from './errors';
+import { stopLoading } from './ui';
 
 interface respDecode {
     [key: string]: any;
@@ -24,6 +25,8 @@ export const startLogin = ( data:i_login ) => {
         } else {
             callback( setError(respJson.message) );
         }
+
+        callback( stopLoading() );
     }
 }
 
@@ -37,8 +40,17 @@ export const login = ( uid:string ):i_action => {
 }
 
 
+export const startLogout = () => {
+    return ( callback:Function ) => {
+        callback( stopLoading() );
+        callback( logout() );
+    }
+}
+
+
 export const logout = ():i_action => {
     const { logout:type } = types;
+    localStorage.clear();
 
     return { type }
 }

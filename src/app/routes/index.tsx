@@ -9,6 +9,7 @@ import LoginScreen from '../components/auth/loginScreen';
 import { useDispatch, useSelector } from 'react-redux';
 import i_redux from '../intefaces/reduxInterface';
 import { startChecking } from '../actions/auth';
+import Loading from '../components/ui/loading';
 
 
 const Routes = () => {
@@ -23,7 +24,7 @@ const Routes = () => {
     },[ dispatch ])
 
     if( check ) {
-        return <div>Espere por favor ...</div>
+        return <Loading type='spin' color='#48f542'/>
     }
 
     return (
