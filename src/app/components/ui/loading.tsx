@@ -3,7 +3,7 @@ import ReactLoading, { LoadingProps } from 'react-loading';
 
 
 const Loading = ({ type, color }:LoadingProps) => (
-    <ReactLoading type={type} color={color} height={'20%'} width={'20%'} />
+    <ReactLoading type={type} color={color} height={'50px'} width={'50px'} />
 )
 
  

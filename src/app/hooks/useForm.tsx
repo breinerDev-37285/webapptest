@@ -1,11 +1,14 @@
 import { useState } from 'react';
 
 const useForm = ( init = {} ):Array<any> => {
+    
 
     const [ values, setValues ] = useState( init );
 
-    const onChangeInput = (e:Event) => {
-        const { name,value } = e.target as HTMLInputElement;
+    const onChangeInput = ( event:any ) => {
+
+        let { target } = event;
+        let { name,value,type,checked } = target as HTMLInputElement;
 
         setValues({
             ...values,

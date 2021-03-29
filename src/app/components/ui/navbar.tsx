@@ -11,7 +11,7 @@ const Nav = () => {
 
     return <nav>
         <Link to='/'>Dashboard</Link>
-        <Link to='/students'>Estudiantes</Link>
+        <Link to='/students/list'>Estudiantes</Link>
         <Link to='/drivers'>Conductores</Link>
         <button onClick={ handleLogout }>Logout</button>
     </nav>

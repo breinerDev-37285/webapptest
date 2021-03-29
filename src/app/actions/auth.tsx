@@ -5,6 +5,9 @@ import { decode } from 'jsonwebtoken';
 import types from '../types';
 import { delErrorMsg, setError } from './errors';
 import { stopLoading } from './ui';
+import { clearStudents } from './students';
+import { clearPdf } from './pdf';
+import { clearDriver } from './drivers';
 
 interface respDecode {
     [key: string]: any;
@@ -40,11 +43,12 @@ export const login = ( uid:string ):i_action => {
 }
 
 
-export const startLogout = () => {
-    return ( callback:Function ) => {
-        callback( stopLoading() );
-        callback( logout() );
-    }
+export const startLogout = () =>  ( callback:Function ) => {
+    callback( stopLoading() );
+    callback( logout() );
+    callback( clearStudents() );
+    callback( clearPdf() );
+    callback( clearDriver() )
 }
 
 

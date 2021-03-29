@@ -3,13 +3,19 @@ import authReducer from '../reducers/authReducer';
 import errorReducer from '../reducers/errorReducer';
 import uiReducer from '../reducers/uiReducer';
 import thunk from 'redux-thunk';
+import studentReducer from '../reducers/studentsReducer';
+import pdfReducer from '../reducers/pdfReducer';
+import driverReducer from '../reducers/driverReducer';
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducers = combineReducers({
     auth: authReducer,
     err: errorReducer,
-    ui: uiReducer
+    ui: uiReducer,
+    student: studentReducer,
+    pdf: pdfReducer,
+    drivers: driverReducer
 });
 
 const Store = createStore( 

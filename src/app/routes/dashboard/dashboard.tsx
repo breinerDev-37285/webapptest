@@ -1,8 +1,9 @@
 import { Redirect, Route,Switch } from 'react-router-dom';
 import DashboardScreen from '../../components/pages/dashboard/dashboardScreen';
 import Drivers from '../../components/pages/drivers';
-import Students from '../../components/pages/students';
+import Students from './students';
 import Nav from '../../components/ui/navbar';
+
 
 const DashboardRoutes = () => <div>
     <Nav/>
@@ -14,7 +15,7 @@ const DashboardRoutes = () => <div>
         />
         <Route
             path='/students'
-            exact={ true }
+            exact={ false }
             component={ Students }
         />
         <Route
