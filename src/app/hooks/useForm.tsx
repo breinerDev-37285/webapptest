@@ -8,7 +8,8 @@ const useForm = ( init = {} ):Array<any> => {
     const onChangeInput = ( event:any ) => {
 
         let { target } = event;
-        let { name,value,type,checked } = target as HTMLInputElement;
+        let { name,value } = target as HTMLInputElement;
+
 
         setValues({
             ...values,
