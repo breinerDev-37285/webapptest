@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import studentReducer from '../reducers/studentsReducer';
 import pdfReducer from '../reducers/pdfReducer';
 import driverReducer from '../reducers/driverReducer';
+import afluenciaReducer from '../reducers/afluenciaReducer';
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -15,7 +16,8 @@ const reducers = combineReducers({
     ui: uiReducer,
     student: studentReducer,
     pdf: pdfReducer,
-    drivers: driverReducer
+    drivers: driverReducer,
+    horarios: afluenciaReducer
 });
 
 const Store = createStore( 

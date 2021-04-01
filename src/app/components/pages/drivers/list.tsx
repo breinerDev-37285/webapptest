@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { activeDriverModal, setActiveDriver } from '../../../actions/drivers';
+import { activeDriverModal, setActiveDriver, startDeleteDriver } from '../../../actions/drivers';
 import { i_driver } from '../../../intefaces/driverInterface';
 import i_redux from '../../../intefaces/reduxInterface';
 import ModalCRUD from './modal';
@@ -18,10 +18,7 @@ const ListDrivers = () => {
 
     const handleAdd = () =>  dispatch( activeDriverModal() );
     
-    const handleDeleteDriver = () => {
-
-    }
-
+    const handleDeleteDriver = (driver:i_driver) => dispatch( startDeleteDriver(driver) );
     return <>
         <button type="button" onClick={ handleAdd }> Agregar </button>
         <table className='table table-striped table-hover'>
@@ -49,7 +46,7 @@ const ListDrivers = () => {
                         <td>{driver.numerorecorridomaximo}</td>
                         <td>
                             <i style={{ cursor: 'pointer', margin: '0 6px '}} onClick={ () => handleEditDriver(driver) } className='fa fa-edit'></i>
-                            <i style={{ cursor: 'pointer', margin: '0 6px '}} onClick={ handleDeleteDriver } className='fa fa-trash'></i>
+                            <i style={{ cursor: 'pointer', margin: '0 6px '}} onClick={ () => handleDeleteDriver(driver) } className='fa fa-trash'></i>
                         </td>
                     </tr>)
                 }

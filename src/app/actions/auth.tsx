@@ -8,6 +8,7 @@ import { stopLoading } from './ui';
 import { clearStudents } from './students';
 import { clearPdf } from './pdf';
 import { clearDriver } from './drivers';
+import { clearHorarios } from './horarios';
 
 interface respDecode {
     [key: string]: any;
@@ -44,18 +45,18 @@ export const login = ( uid:string ):i_action => {
 
 
 export const startLogout = () =>  ( callback:Function ) => {
+    localStorage.clear();
     callback( stopLoading() );
     callback( logout() );
     callback( clearStudents() );
     callback( clearPdf() );
-    callback( clearDriver() )
+    callback( clearDriver() );
+    callback( clearHorarios() );
 }
 
 
 export const logout = ():i_action => {
     const { logout:type } = types;
-    localStorage.clear();
-
     return { type }
 }
 

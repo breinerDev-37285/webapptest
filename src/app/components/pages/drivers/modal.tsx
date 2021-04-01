@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearActiveDriver, closeDriverModal, startUpdateDriver } from '../../../actions/drivers';
+import { clearActiveDriver, closeDriverModal, startAddDriver, startUpdateDriver } from '../../../actions/drivers';
 import { customStyles } from '../../../helpers/modal';
 import useForm from '../../../hooks/useForm';
 import { i_driver } from '../../../intefaces/driverInterface';
@@ -64,7 +64,7 @@ const ModalCRUD = () => {
         if( active ) {
             return dispatch( startUpdateDriver(values) );
         } else {
-            
+            return dispatch( startAddDriver(values) );
         }
     }
 

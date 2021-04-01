@@ -59,6 +59,34 @@ export const clearDriver = ():i_action => {
 }
 
 
+export const startAddDriver = (driver:i_driver) => async (callback:Function) => {
+     /*
+        poner la ruta del backend para agregar el driver
+
+        const resp = await fetchWithToken({url: `/ruta`,method: 'POST',data:driver});
+        const dataResp = await resp.json();
+    */
+   
+        Swal.fire({
+            icon: 'success',
+            title: 'Actividad completada',
+            // text: dataResp.message
+        });
+    // callback( addDriver );
+    callback( closeDriverModal() );
+}
+
+export const addDriver = (driver:i_driver):i_action => {
+    const { addDriver:type } = types;
+    return {
+        type,
+        payload: {
+            update: driver
+        }
+    }
+}
+
+
 export const startUpdateDriver =  (driver:i_driver) => async (callback:Function) => {
     const resp = await fetchWithToken({url: `/conductor/${driver.cedula_conductor}`,method: 'PUT',data:driver});
     const dataResp = await resp.json();
@@ -77,6 +105,35 @@ export const startUpdateDriver =  (driver:i_driver) => async (callback:Function)
 
 export const updateDriver = (driver:i_driver):i_action => {
     const { updateDriver:type } = types;
+    return { 
+        type,
+        payload: {
+            update: driver
+        }
+    }
+}
+
+
+export const startDeleteDriver = (driver:i_driver) => async ( callback:Function ) => {
+
+    /*
+        poner la ruta del backend para eliminar el driver
+
+        const resp = await fetchWithToken({url: `/ruta/{driver.cedula_conductor}`,method: 'DELETE',data:driver});
+        const dataResp = await resp.json();
+    */
+   
+    Swal.fire({
+        icon: 'success',
+        title: 'Actividad completada',
+        // text: dataResp.message
+    });
+    // callback( deleteDriver(driver) );
+} 
+
+
+const deleteDriver = (driver:i_driver):i_action => {
+    const { deleteDriver:type } = types;
     return { 
         type,
         payload: {

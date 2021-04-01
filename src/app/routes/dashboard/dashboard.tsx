@@ -3,6 +3,7 @@ import DashboardScreen from '../../components/pages/dashboard/dashboardScreen';
 import Drivers from '../../components/pages/drivers';
 import Students from './students';
 import Nav from '../../components/ui/navbar';
+import Horarios from '../../components/pages/horarios/HoraioScreen';
 
 
 const DashboardRoutes = () => <div>
@@ -22,6 +23,11 @@ const DashboardRoutes = () => <div>
             path='/drivers'
             exact={ true }
             component={ Drivers }
+        />
+        <Route
+            path='/afluencia'
+            exact={ true }
+            component={ Horarios }
         />
         <Redirect to='/'/>
     </Switch>

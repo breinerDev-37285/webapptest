@@ -1,5 +1,3 @@
-
-
 const types = {
     login: '[Auth] login',
     logout: '[Auth] logout',
@@ -19,7 +17,11 @@ const types = {
     openModalDrivers: '[Driver] Open modal',
     clseModalDrivers: '[Driver] Close modal',
     clearActiveDriver: '[Driver] Clear active driver',
-    updateDriver: '[Driver] Update driver'
+    updateDriver: '[Driver] Update driver',
+    addDriver: '[Driver] Add driver',
+    deleteDriver: '[Driver] delete driver',
+    getAfluenciaStudent: '[Afluencia] afluencia student',
+    clearAfluenciaStudent: '[Afluencia] clear afluencia student'
 }
 
 export default types;

@@ -22,7 +22,7 @@ export interface i_student{
     comentarios?: Array<commentary>
 }
 
-interface city {
+export interface city {
     id_ciudad: number;
     nombre: string;
 }

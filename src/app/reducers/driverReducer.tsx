@@ -6,7 +6,7 @@ const init:i_state = { openModal:false }
 
 const driverReducer = (state = init, action:i_action):i_state => {
     const { loadDrivers, setActiveDriver, clearDrivers,openModalDrivers,clseModalDrivers,clearActiveDriver,
-        updateDriver
+        updateDriver,deleteDriver,addDriver
     } = types;
     
     switch( action.type ){
@@ -52,6 +52,20 @@ const driverReducer = (state = init, action:i_action):i_state => {
                         return driver;
                     }
                 })
+            }
+            break;
+        case deleteDriver: 
+            state = {
+                ...state,
+                drivers: state.drivers?.filter((driver:i_driver) => 
+                    action.payload?.update?.cedula_conductor !== driver.cedula_conductor
+                )
+            }
+            break;
+        case addDriver:
+            state = {
+                ...state,
+                ...action.payload?.update
             }
             break;
         case clearDrivers:

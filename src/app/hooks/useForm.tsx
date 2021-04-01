@@ -7,8 +7,7 @@ const useForm = ( init = {} ):Array<any> => {
 
     const onChangeInput = (event:ChangeEvent) => {
         let { type,checked,value,name } = event.target as HTMLInputElement;
-        const val = type === 'checkbox' ? checked : value;
-
+        const val = type && type === 'checkbox' ? checked : value;
     
         setValues((prevState) => {
             return {
