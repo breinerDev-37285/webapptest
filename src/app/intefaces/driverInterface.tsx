@@ -22,7 +22,7 @@ export interface i_driver {
     nombre_conductor: string,
     email_conductor: string,
     state_conductor: boolean,
-    linkcontrato_conductor: string,
+    linkcontrato_conductor?: string,
     numerorecorridomaximo: number,
     celular_conductor: string,
     vehiculos?: Array<vehicle>,
@@ -33,6 +33,7 @@ export interface i_driver_state {
     drivers?: Array<i_driver>;
     active?: i_driver;
     openModal?: boolean;
+    update?: i_driver;
 }
 
 

@@ -2,6 +2,7 @@ import { fetchWithToken } from "../helpers/fetch";
 import { i_driver, i_driver_action as i_action } from "../intefaces/driverInterface";
 import types from "../types";
 import { stopLoading } from "./ui";
+import Swal from 'sweetalert2';
 
 
 
@@ -55,4 +56,31 @@ export const clearActiveDriver = ():i_action => {
 export const clearDriver = ():i_action => {
     const { clearDrivers:type } = types;
     return { type }
+}
+
+
+export const startUpdateDriver =  (driver:i_driver) => async (callback:Function) => {
+    const resp = await fetchWithToken({url: `/conductor/${driver.cedula_conductor}`,method: 'PUT',data:driver});
+    const dataResp = await resp.json();
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Actividad completada',
+        text: dataResp.message
+    })
+
+    callback(updateDriver(driver))
+    callback( closeDriverModal() );
+    callback( clearActiveDriver() );
+}
+
+
+export const updateDriver = (driver:i_driver):i_action => {
+    const { updateDriver:type } = types;
+    return { 
+        type,
+        payload: {
+            update: driver
+        }
+    }
 }

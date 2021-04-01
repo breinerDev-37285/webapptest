@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearActiveDriver, closeDriverModal } from '../../../actions/drivers';
+import { clearActiveDriver, closeDriverModal, startUpdateDriver } from '../../../actions/drivers';
 import { customStyles } from '../../../helpers/modal';
 import useForm from '../../../hooks/useForm';
 import { i_driver } from '../../../intefaces/driverInterface';
@@ -15,7 +15,22 @@ const ModalCRUD = () => {
 
     const { active,openModal } = useSelector((info:i_redux) => info.drivers);
 
-    const [ values, onChangeInput,reset ] = useForm(active);
+    let init:i_driver = {
+        nombre_conductor: '',
+        apellido_conductor:'',
+        cedula_conductor:'',
+        celular_conductor:'',
+        email_conductor:'',
+        numerorecorridomaximo: 0,
+        state_conductor: false
+    }
+
+    if( active ){
+        init = active;
+    }
+
+    const [ values, onChangeInput,reset ] = useForm(init);
+
 
     const activeId = useRef( active );
 
@@ -28,13 +43,13 @@ const ModalCRUD = () => {
     
 
     const { 
-        nombre_conductor:name,
-        apellido_conductor:lastname,
-        cedula_conductor:cedula,
-        celular_conductor:telf,
-        email_conductor:email,
+        nombre_conductor,
+        apellido_conductor,
+        cedula_conductor,
+        celular_conductor,
+        email_conductor,
         numerorecorridomaximo,
-        state_conductor:estado
+        state_conductor
     }:i_driver = values;
 
 
@@ -43,19 +58,20 @@ const ModalCRUD = () => {
         dispatch( clearActiveDriver() );
     }
 
-    const afterOpenModal = () => {   
-    }
 
     const handleSubmit =  (e:Event) => {
         e.preventDefault();
-        console.log(values)
+        if( active ) {
+            return dispatch( startUpdateDriver(values) );
+        } else {
+            
+        }
     }
 
     return <>
         <Modal
             isOpen={ Boolean(openModal) }
             ariaHideApp={ false }
-            onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}
         >
@@ -66,9 +82,10 @@ const ModalCRUD = () => {
                         id='nombreid' 
                         type="text"
                         className='form-control'
-                        name='name'
-                        value={ name }
-                        disabled={ true }
+                        name='nombre_conductor'
+                        value={ nombre_conductor }
+                        onChange={ onChangeInput }
+                        disabled={ !!active }
                     />
                 </div>
                 <div className='mb-3'>
@@ -77,9 +94,10 @@ const ModalCRUD = () => {
                         id='apellidoid' 
                         type="text"
                         className='form-control'
-                        name='lastname'
-                        value={ lastname }
-                        disabled={ true }
+                        name='apellido_conductor'
+                        value={ apellido_conductor }
+                        onChange={ onChangeInput }
+                        disabled={ !!active }
                     />
                 </div>
                 <div className='mb-3'>
@@ -88,9 +106,12 @@ const ModalCRUD = () => {
                         id='cedulaid' 
                         type="text"
                         className='form-control'
-                        name='cedula'
-                        value={ cedula }
-                        disabled={ true }
+                        name='cedula_conductor'
+                        value={ cedula_conductor }
+                        onChange={ onChangeInput }
+                        disabled={ !!active }
+                        maxLength={ 10 }
+                        minLength={ 0 }
                     />
                 </div>
                 <div className='mb-3'>
@@ -99,9 +120,10 @@ const ModalCRUD = () => {
                         id='correoid' 
                         type="email"
                         className='form-control'
-                        name='email'
-                        value={ email }
-                        disabled={ true }
+                        name='email_conductor'
+                        value={ email_conductor }
+                        onChange={ onChangeInput }
+                        disabled={ !!active }
                     />
                 </div>
                 <div className='mb-3'>
@@ -110,17 +132,24 @@ const ModalCRUD = () => {
                         id='telefonoid' 
                         type="telf"
                         className='form-control'
-                        name='telf'
-                        value={ telf }
-                        disabled={ true }
+                        name='celular_conductor'
+                        value={ celular_conductor }
+                        onChange={ onChangeInput }
+                        disabled={ !!active }
+                        maxLength={ 10 }
+                        minLength={ 0 }
                     />
                 </div>
                 <div className='mb-3'>
-                    <label htmlFor="estadoid" className='form-label'>Estado</label>
-                    <select value={String(estado) } onChange={onChangeInput}>
-                        <option value="false">inactivo</option>
-                        <option value="true">activo</option>
-                    </select>
+                    <label>
+                        Estado:
+                        <input
+                            name="state_conductor"
+                            type="checkbox"
+                            checked={ state_conductor }
+                            onChange={ onChangeInput } 
+                        />
+                    </label>
                 </div>
                 <div className='mb-3'>
                     <label htmlFor="recorridosid" className='form-label'>max recorrido</label>
@@ -131,6 +160,7 @@ const ModalCRUD = () => {
                         name='numerorecorridomaximo'
                         value={ numerorecorridomaximo }
                         onChange={ onChangeInput }
+                        min={ 0 }
                     />
                 </div>
 

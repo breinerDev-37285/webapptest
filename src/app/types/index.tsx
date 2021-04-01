@@ -18,7 +18,8 @@ const types = {
     clearDrivers: '[Driver] Clear driver',
     openModalDrivers: '[Driver] Open modal',
     clseModalDrivers: '[Driver] Close modal',
-    clearActiveDriver: '[Driver] Clear active driver'
+    clearActiveDriver: '[Driver] Clear active driver',
+    updateDriver: '[Driver] Update driver'
 }
 
 export default types;

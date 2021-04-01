@@ -1,22 +1,22 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 const useForm = ( init = {} ):Array<any> => {
     
 
     const [ values, setValues ] = useState( init );
 
-    const onChangeInput = ( event:any ) => {
+    const onChangeInput = (event:ChangeEvent) => {
+        let { type,checked,value,name } = event.target as HTMLInputElement;
+        const val = type === 'checkbox' ? checked : value;
 
-        let { target } = event;
-        let { name,value } = target as HTMLInputElement;
-
-
-        setValues({
-            ...values,
-            [name]: value
-        })
-    }
-
+    
+        setValues((prevState) => {
+            return {
+                ...prevState,
+                [name]: val
+            }
+        });
+      }
     const reset = () => setValues(init)
 
     return [
