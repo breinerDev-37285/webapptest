@@ -51,7 +51,7 @@ interface schedule {
     horasalida: string;
 }
 
-interface commentary {
+export interface commentary {
     id_comentario: Number;
     cedula_conductor: String,
     cedula_estudiante: String,

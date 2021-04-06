@@ -19,15 +19,15 @@ const Afluencia = () => {
     
     const init:i_h_consulta = {
         nombredia: 'Lunes',
-        horaentrada: date.format('H:mm'),
-        horadalida: date.hour(5).format('H:mm'),
+        horaentrata: date.format('H:mm'),
+        horasalida: date.hour(5).format('H:mm'),
     }
 
     const [ showTimeStart,setShowTimeStart ] = useState(false);
     const [ showTimeEnd,setShowTimeEnd ] = useState(false);
 
-    const [ horaentrada,setHoraEntrada ] = useState(init.horaentrada);
-    const [ horadalida,setHoraSalida ] = useState(init.horadalida);
+    const [ horaentrada,setHoraEntrada ] = useState(init.horaentrata);
+    const [ horadalida,setHoraSalida ] = useState(init.horasalida);
 
     const [ values, handleInputChange ] = useForm(init);
     const { nombredia } = values;
@@ -37,8 +37,8 @@ const Afluencia = () => {
     const handleSubmit = (e:Event) => {
         e.preventDefault();
 
-        values.horaentrada = horaentrada;
-        values.horadalida = horadalida;
+        values.horaentrata = horaentrada;
+        values.horasalida = horadalida;
         dispatch(startingGetHorarios(values));
         dispatch(startLoading());
     }
